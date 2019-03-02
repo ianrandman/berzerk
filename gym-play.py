@@ -9,6 +9,7 @@ from gym import logger
 import sys
 sys.path.append('/non_learning_agent')
 from non_learning_agent.non_learning_agent import NonLearningAgent
+from random_agent.random_agent import RandomAgent
 
 class Agent(object):
     """The world's simplest agent!"""

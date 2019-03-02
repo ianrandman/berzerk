@@ -24,6 +24,7 @@ class NonLearningAgent(object):
         self.num_levels = 0
         self.total_steps = 0
         self.elapsed_time = 0
+        ########################################
 
     def is_start_of_level(self, observation):
         if observation[4][4][0] != 0 and self.is_level_end:
