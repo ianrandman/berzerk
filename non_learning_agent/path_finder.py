@@ -1,4 +1,4 @@
-from non_learning_agent import look_around
+from . import look_around
 import math
 from astar import AStar
 import numpy as np

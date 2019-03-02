@@ -1,5 +1,5 @@
 import math
-from non_learning_agent import find_next_move
+from . import path_finder
 
 
 def distance_to_exit(player_center, exit):
@@ -35,57 +35,6 @@ def find_direction(start_location, end_location):
     return -1 # should never get here
 
 
-def fix_action(vision, action):
-    if action == 2: # UP
-        if -1 < vision[15][1] < 4 or -1 < vision[14][1] < 4:
-            return 3 # RIGHT
-        if -1 < vision[1][1] < 4 or -1 < vision[2][1] < 4:
-            return 4 # LEFT
-        return 2
-    if action == 6:  # UPRIGHT
-        if -1 < vision[0][1] < 4 or -1 < vision[1][1] < 4:
-            return 3  # RIGHT
-        if -1 < vision[3][1] < 4 or -1 < vision[4][1] < 4:
-            return 2  # UP
-        return 6
-    if action == 3:  # RIGHT
-        if -1 < vision[2][1] < 4 or -1 < vision[3][1] < 4:
-            return 5  # DOWN
-        if -1 < vision[5][1] < 4 or -1 < vision[6][1] < 4:
-            return 2  # UP
-        return 3
-    if action == 8:  # DOWNRIGHT
-        if -1 < vision[4][1] < 4 or -1 < vision[5][1] < 4:
-            return 5  # DOWN
-        if -1 < vision[7][1] < 4 or -1 < vision[8][1] < 4:
-            return 3  # RIGHT
-        return 8
-    if action == 5: # DOWN
-        if -1 < vision[6][1] < 4 or -1 < vision[7][1] < 4:
-            return 4 # LEFT
-        if -1 < vision[9][1] < 4 or -1 < vision[10][1] < 4:
-            return 3 # RIGHT
-        return 5
-    if action == 9: # DOWNLEFT
-        if -1 < vision[8][1] < 4 or -1 < vision[9][1] < 4:
-            return 4 # LEFT
-        if -1 < vision[11][1] < 4 or -1 < vision[12][1] < 4:
-            return 5 # DOWN
-        return 9
-    if action == 4: # LEFT
-        if -1 < vision[10][1] < 4 or -1 < vision[11][1] < 4:
-            return 2 # UP
-        if -1 < vision[13][1] < 4 or -1 < vision[14][1] < 4:
-            return 5 # DOWN
-        return 4
-    if action == 7: # UPLEFT
-        if -1 < vision[12][1] < 4 or -1 < vision[13][1] < 4:
-            return 2 # UP
-        if -1 < vision[15][1] < 4 or -1 < vision[0][1] < 4:
-            return 4 # LEFT
-        return 7
-
-
 def move(vision, obs, player_center, exits):
     closest_exit_index = 0
     exit_index = -1
@@ -99,7 +48,7 @@ def move(vision, obs, player_center, exits):
             closest_exit_index = exit_index
 
     exit_location = exits[closest_exit_index]
-    next_position = find_next_move.astar_next_direction(obs, player_center, exit_location, vision)
+    next_position = path_finder.astar_next_direction(obs, player_center, exit_location, vision)
     direction_index = find_direction(player_center, next_position)
 
     direction_to_action = {-1: -1, 0: 2, 1: 6, 2: 6, 3: 6, 4: 3, 5: 8, 6: 8, 7: 8, 8: 5,
@@ -158,6 +107,4 @@ def try_shoot_enemy(vision):
         if worry_direction_index != -1:
             action = direction_to_action[worry_direction_index]
 
-    else:
-        z = 1
     return action

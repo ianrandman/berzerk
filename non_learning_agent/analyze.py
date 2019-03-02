@@ -1,5 +1,5 @@
 import numpy as np
-from non_learning_agent.look_around import look_around
+from . import look_around
 
 PLAYER_CLR = np.array([240, 170, 103])
 BLACK_CLR = np.array([0, 0, 0])
@@ -9,7 +9,7 @@ WALL_CLR = np.array([84, 92, 214])
 def parse_observations(obs, player_center):
     #player_center = get_player_center(obs)
     if player_center is not None:
-        vision = look_around(obs, player_center, shift=True)
+        vision = look_around.look_around(obs, player_center, shift=True)
         return vision
 
 
