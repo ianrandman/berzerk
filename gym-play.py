@@ -42,7 +42,7 @@ if __name__ == '__main__':
 
 
     env.seed(0)
-    agent = ReflexAgent(env.action_space)
+    agent = NEATAgent(env.action_space)
 
     episode_count = 100
     reward = 0
