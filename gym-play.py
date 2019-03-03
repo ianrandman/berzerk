@@ -8,7 +8,8 @@ from gym import logger
 
 import sys
 sys.path.append('/non_learning_agent')
-from non_learning_agent.non_learning_agent import NonLearningAgent
+# from non_learning_agent.non_learning_agent import NonLearningAgent
+from neat_agent.neat_agent import NEATAgent
 from random_agent.random_agent import RandomAgent
 
 class Agent(object):
@@ -45,7 +46,7 @@ if __name__ == '__main__':
 
 
         env.seed(0)
-        agent = NonLearningAgent(env.action_space)
+        agent = NEATAgent(env.action_space)
 
         episode_count = 100
         reward = 0
@@ -59,7 +60,7 @@ if __name__ == '__main__':
             action = agent.act(ob, reward, done)
             ob, reward, done, x = env.step(action)
             score += reward
-            #env.render()
+            env.render()
 
         agent.act(ob, reward, done)
 
