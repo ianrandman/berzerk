@@ -7,8 +7,7 @@ import gym
 from gym import logger
 
 import sys
-sys.path.append('/reflex_agent')
-# from reflex_agent.reflex_agent import NonLearningAgent
+from reflex_agent.reflex_agent import ReflexAgent
 from neat_agent.neat_agent import NEATAgent
 from random_agent.random_agent import RandomAgent
 
@@ -46,7 +45,7 @@ if __name__ == '__main__':
 
 
         env.seed(0)
-        agent = NEATAgent(env.action_space)
+        agent = RandomAgent(env.action_space)
 
         episode_count = 100
         reward = 0

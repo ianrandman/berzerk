@@ -8,7 +8,7 @@ from . import look_around
 from . import figure_out_action
 
 
-class NonLearningAgent(object):
+class ReflexAgent(object):
     """The world's simplest agent!"""
 
     def __init__(self, action_space):
