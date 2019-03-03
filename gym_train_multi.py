@@ -4,9 +4,8 @@ import os
 import numpy as np
 from skimage.measure import block_reduce
 
-from . import look_around
-from . import network
-from . import neat_agent
+from neat_agent import look_around
+from neat_agent import network
 import neat
 
 first_genome = None
@@ -32,8 +31,16 @@ class Agent(object):
         if vision is None:  # no player object on screen
             return self.action_space.sample()
         else:
-            move = neat_agent.get_move(brain.activate(vision))
+            move = get_move(brain.activate(vision))
             return move
+
+
+def get_move(outputs):
+    max = -1000
+    for output in outputs:
+        if output > max:
+            max = output
+    return outputs.index(max)
 
 
 def eval_genome(genome, config):
@@ -124,11 +131,11 @@ def run(config_file):
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
                          config_file)
 
-    print(config.genome_config.compatibility_weight_coefficient)
+    # print(config.genome_config.compatibility_weight_coefficient)
 
     # Create the population, which is the top-level object for a NEAT run.
-    # p = neat.Population(config)
-    p = neat.Checkpointer.restore_checkpoint('checkpoints/fitness2/neat-checkpoint-195')
+    p = neat.Population(config)
+    # p = neat.Checkpointer.restore_checkpoint('checkpoints/fitness2/neat-checkpoint-195')
 
     # Add a stdout reporter to show progress in the terminal.
     p.add_reporter(neat.StdOutReporter(True))
