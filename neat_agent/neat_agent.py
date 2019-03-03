@@ -4,7 +4,7 @@ from . import network
 import numpy as np
 import time
 
-filename = 'neat_agent/network_data/network_data214017.dat'
+network_file = 'neat_agent/network_data.dat'
 
 
 def get_move(outputs):
@@ -54,7 +54,7 @@ class NEATAgent(object):
 
         ###################################################
 
-        brain = network.load_network(filename)
+        brain = network.load_network(network_file)
         data = block_reduce(observation, block_size=(2, 2, 1), func=np.max)
         vision = look_around.parse_observations(data)
         if vision is None:  # no player object on screen
