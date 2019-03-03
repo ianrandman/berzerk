@@ -10,6 +10,6 @@ This is an implementation of the reflex algorithm to play the game. To run it, c
 
 ###NEAT Agent
 This is an implementation of the Neuroevolution of Augmented Topologies algorithm to play the game. To run it, change the agent in line 45 of gym_play.py to NEATAgent.
-
+To train, run gym_train_multi.py.
 ###Random Agent
 This is an agent that just makes random moves. To run it, change the agent in line 45 of gym_play.py to RandomAgent.
