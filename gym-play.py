@@ -60,7 +60,7 @@ if __name__ == '__main__':
             action = agent.act(ob, reward, done)
             ob, reward, done, x = env.step(action)
             score += reward
-            env.render()
+            # env.render()
 
         agent.act(ob, reward, done)
 
