@@ -7,8 +7,8 @@ import gym
 from gym import logger
 
 import sys
-sys.path.append('/non_learning_agent')
-# from non_learning_agent.non_learning_agent import NonLearningAgent
+sys.path.append('/reflex_agent')
+# from reflex_agent.reflex_agent import NonLearningAgent
 from neat_agent.neat_agent import NEATAgent
 from random_agent.random_agent import RandomAgent
 
